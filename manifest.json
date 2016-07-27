@@ -1,0 +1,53 @@
+{
+  "name": "chrome-include",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Chrome Include",
+  "icons": {
+      "16": "images/icon-16.png",
+      "128": "images/icon-128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ],
+    "page": "html/index.html"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon-19-off.png",
+      "38": "images/icon-38.png"
+    },
+    "default_title": "Chrome Include"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "js/extension-vendor.js",
+        "js/contentscript.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources":[
+    "html/*",
+    "js/*"
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "<all_urls>",
+    "http://*/*",
+    "https://*/*",
+    "background"
+
+  ]
+}
